@@ -1,0 +1,294 @@
+﻿@using System;
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Расписание САСК";
+    var startDate = DateTime.Now;
+    var Monday = startDate.AddDays(-5).ToShortDateString();
+    var Tuesday = startDate.AddDays(-4).ToShortDateString();
+    var Wednesday = startDate.AddDays(-3).ToShortDateString();
+    var Thursday = startDate.AddDays(-2).ToShortDateString();
+    var Friday = startDate.AddDays(-1).ToShortDateString();
+    var Saturday = startDate.ToShortDateString();
+    var Sunday = startDate.AddDays(1).ToShortDateString();
+    if(startDate.DayOfWeek == DayOfWeek.Monday){
+        Monday = startDate.ToShortDateString();
+        Tuesday = startDate.AddDays(1).ToShortDateString();
+        Wednesday = startDate.AddDays(2).ToShortDateString();
+        Thursday = startDate.AddDays(3).ToShortDateString();
+        Friday = startDate.AddDays(4).ToShortDateString();
+        Saturday = startDate.AddDays(5).ToShortDateString();
+        Sunday = startDate.AddDays(6).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Tuesday)
+    {
+        Monday = startDate.AddDays(-1).ToShortDateString();
+        Tuesday = startDate.ToShortDateString();
+        Wednesday = startDate.AddDays(1).ToShortDateString();
+        Thursday = startDate.AddDays(2).ToShortDateString();
+        Friday = startDate.AddDays(3).ToShortDateString();
+        Saturday = startDate.AddDays(4).ToShortDateString();
+        Sunday = startDate.AddDays(5).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Wednesday)
+    {
+        Monday = startDate.AddDays(-2).ToShortDateString();
+        Tuesday = startDate.AddDays(-1).ToShortDateString();
+        Wednesday = startDate.ToShortDateString();
+        Thursday = startDate.AddDays(1).ToShortDateString();
+        Friday = startDate.AddDays(2).ToShortDateString();
+        Saturday = startDate.AddDays(3).ToShortDateString();
+        Sunday = startDate.AddDays(4).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Thursday)
+    {
+        Monday = startDate.AddDays(-3).ToShortDateString();
+        Tuesday = startDate.AddDays(-2).ToShortDateString();
+        Wednesday = startDate.AddDays(-1).ToShortDateString();
+        Thursday = startDate.ToShortDateString();
+        Friday = startDate.AddDays(1).ToShortDateString();
+        Saturday = startDate.AddDays(2).ToShortDateString();
+        Sunday = startDate.AddDays(3).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Friday)
+    {
+        Monday = startDate.AddDays(-4).ToShortDateString();
+        Tuesday = startDate.AddDays(-3).ToShortDateString();
+        Wednesday = startDate.AddDays(-2).ToShortDateString();
+        Thursday = startDate.AddDays(-1).ToShortDateString();
+        Friday = startDate.ToShortDateString();
+        Saturday = startDate.AddDays(1).ToShortDateString();
+        Sunday = startDate.AddDays(2).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Saturday)
+    {
+        Monday = startDate.AddDays(-5).ToShortDateString();
+        Tuesday = startDate.AddDays(-4).ToShortDateString();
+        Wednesday = startDate.AddDays(-3).ToShortDateString();
+        Thursday = startDate.AddDays(-2).ToShortDateString();
+        Friday = startDate.AddDays(-1).ToShortDateString();
+        Saturday = startDate.ToShortDateString();
+        Sunday = startDate.AddDays(1).ToShortDateString();
+    }
+    if (startDate.DayOfWeek == DayOfWeek.Sunday)
+    {
+        Monday = startDate.AddDays(-6).ToShortDateString();
+        Tuesday = startDate.AddDays(-5).ToShortDateString();
+        Wednesday = startDate.AddDays(-4).ToShortDateString();
+        Thursday = startDate.AddDays(-3).ToShortDateString();
+        Friday = startDate.AddDays(-2).ToShortDateString();
+        Saturday = startDate.AddDays(-1).ToShortDateString();
+        Sunday = startDate.ToShortDateString();
+    }
+}
+<h1 class="text-center p-5">Числитель</h1>
+<table class="table table-bordered border-dark rounded p-5">
+    <thead>
+        <tr>
+            <th style="background-color: orange" class="text-light" colspan="1"></th>
+            <th style="background-color: orange" class="text-light" >Дата</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Monday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Tuesday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Wednesday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Thursday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Friday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Saturday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Sunday</th>
+        </tr>
+        <tr class="bg-warning">
+            <th style="background-color: black" class="text-light">№</th>
+            <th style="background-color: black" class="text-light">Время</th>
+            <th style="background-color: orange" class="text-light">Понедельник</th>
+            <th style="background-color: orange" class="text-light">Вторник</th>
+            <th style="background-color: orange" class="text-light">Среда</th>
+            <th style="background-color: orange" class="text-light">Четверг</th>
+            <th style="background-color: orange" class="text-light">Пятница</th>
+            <th style="background-color: orange" class="text-light">Суббота</th>
+            <th style="background-color: orange" class="text-light">Воскресенье</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="text-bg-dark">1</th>
+            <td style="background-color: orange" class="text-light">8.00-9.30</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">2</th>
+            <td style="background-color: orange" class="text-light">9.40-11.10</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">3</th>
+            <td style="background-color: orange" class="text-light">11.30-13.00</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark">4</th>
+            <td style="background-color: orange" class="text-light">13.10-14.40</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">5</th>
+            <td style="background-color: orange" class="text-light">14.50-16.20</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">6</th>
+            <td style="background-color: orange" class="text-light">16.30-18.00</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">7</th>
+            <td style="background-color: orange" class="text-light">18.10-19.40</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+    </tbody>
+</table>
+<h1 class="text-center p-5">Знаменатель</h1>
+<table class="table table-bordered border-dark rounded p-5">
+    <thead>
+        <tr>
+            <th style="background-color: orange" class="text-light" colspan="1"></th>
+            <th style="background-color: orange" class="text-light">Дата</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Monday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Tuesday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Wednesday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Thursday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Friday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Saturday</th>
+            <th style="background-color: black" class="text-light" colspan="1">@Sunday</th>
+        </tr>
+        <tr class="bg-warning">
+            <th style="background-color: black" class="text-light">№</th>
+            <th style="background-color: black" class="text-light">Время</th>
+            <th style="background-color: orange" class="text-light">Понедельник</th>
+            <th style="background-color: orange" class="text-light">Вторник</th>
+            <th style="background-color: orange" class="text-light">Среда</th>
+            <th style="background-color: orange" class="text-light">Четверг</th>
+            <th style="background-color: orange" class="text-light">Пятница</th>
+            <th style="background-color: orange" class="text-light">Суббота</th>
+            <th style="background-color: orange" class="text-light">Воскресенье</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="text-bg-dark">1</th>
+            <td style="background-color: orange" class="text-light">8.00-9.30</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">2</th>
+            <td style="background-color: orange" class="text-light">9.40-11.10</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">3</th>
+            <td style="background-color: orange" class="text-light">11.30-13.00</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark">4</th>
+            <td style="background-color: orange" class="text-light">13.10-14.40</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">5</th>
+            <td style="background-color: orange" class="text-light">14.50-16.20</td>
+            <td></td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">6</th>
+            <td style="background-color: orange" class="text-light">16.30-18.00</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+        <tr>
+            <th class="text-bg-dark" scope="row">7</th>
+            <td style="background-color: orange" class="text-light">18.10-19.40</td>
+            <td></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Выходной</th>
+        </tr>
+    </tbody>
+</table>
