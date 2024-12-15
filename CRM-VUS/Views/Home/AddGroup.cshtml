@@ -1,0 +1,39 @@
+﻿@model CRM_VUS.Models.StudentGroup
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Добавить группу";
+}
+@await Html.PartialAsync("Index")
+<div class="modal fade" id="Create_group" tabindex="-1" aria-labelledby="Create_group_Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content text-bg-warning">
+                <form asp-action="AddGroup" asp-controller="home" data-ajax-method="POST" data-ajax="true" data-ajax-update="studentFormDetails" data-ajax-complete="OnComplete">
+                    <div class="modal-header text-light">
+                        <h5 class="modal-title" id="exampleModalLabel">Создать новую группу</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Curse" class="form-control"  aria-required="true" placeholder="41" />
+                            <label asp-for="Curse">Номер группы</label>
+                            <span asp-validation-for="Curse" class="text-light"></span>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="NameGroup" class="form-control" aria-required="true" placeholder="ИС" />
+                            <label asp-for="NameGroup">Группа</label>
+                            <span asp-validation-for="NameGroup" class="text-light"></span>
+                        </div>
+                    <label class="text-light">@ViewBag.Message</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light text-dark" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-dark text-light">Сохранить изменения</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
