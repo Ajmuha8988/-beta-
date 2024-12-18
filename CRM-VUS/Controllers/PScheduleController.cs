@@ -21,13 +21,15 @@ namespace CRM_VUS.Controllers
             var lessonssmokymo = _context.classLessons.ToList();
             var teachers = _context.Users.ToList();
             var PScheduleVMModels = _context.pschedules.ToList();
+            var PSP = _context.pschedules.FirstOrDefault();
             var viewmodel = new PScheduleVM
             {
                 studentGroupsModels = studentGroups,
                 ClassRoomModels = classroomS,
                 ClassLessonsModels = lessonssmokymo,
                 UserModels = teachers,
-                PSchedulesModelsList = PScheduleVMModels
+                PSchedulesModelsList = PScheduleVMModels,
+                PSchedulesModels = PSP
             };
             return View("~/Views/Schedule_Constructor/PSchedule/AddPSchedule.cshtml", viewmodel);
 
@@ -38,7 +40,7 @@ namespace CRM_VUS.Controllers
         {
             var existingRecord = _context.pschedules.FirstOrDefault(sg => sg.Curse == vM.PSchedulesModels.Curse 
             && sg.NameGroup == vM.PSchedulesModels.NameGroup && sg.NumberLessons == vM.PSchedulesModels.NumberLessons
-            && sg.Dayofweek == vM.PSchedulesModels.Dayofweek);
+            && sg.Dayofweek == vM.PSchedulesModels.Dayofweek && sg.KindOfSchedules == vM.PSchedulesModels.KindOfSchedules);
             if (existingRecord != null) 
             {
                 existingRecord.NameRoom = vM.PSchedulesModels.NameRoom;

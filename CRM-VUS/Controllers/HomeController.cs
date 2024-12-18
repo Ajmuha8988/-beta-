@@ -30,6 +30,10 @@ namespace CRM_VUS.Controllers
         {
             return View();
         }
+        public IActionResult AddTSchedule()
+        {
+            return RedirectToAction("AddTSchedule", "TSchedule");
+        }
         public IActionResult AddPSchedule()
         {
             return RedirectToAction("AddPSchedule", "PSchedule");

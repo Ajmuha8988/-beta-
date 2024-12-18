@@ -10,10 +10,10 @@ namespace CRM_VUS.Data
         public DbSet<ClassRoom> classRooms { get; set; }
         public DbSet<ClassLessons> classLessons { get; set; }
         public DbSet<PSchedule> pschedules { get; set; }
+        public DbSet<TSchedule> tschedules { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
 
     }

@@ -163,13 +163,21 @@
                 <option>Суббота</option>
             </select>
         </div>
-        <div>
-            <button type="submit" class="btn btn-dark text-light">Сохранить</button>
-        </div>
-        <div class="pt-5">
-
-        </div>
+            <div class="d-flex">
+                <p class="text-light px-3">Вид расписание</p>
+                <select asp-for="PSchedulesModels.KindOfSchedules" class="search-select form-select">
+                    <option>Числитель</option>
+                    <option>Знаменатель</option>
+                </select>
+            </div>
     </div>
+        <div class="container d-flex justify-content-end">
+            <div>
+                <button type="submit" class="btn btn-dark text-light">Сохранить</button>
+            </div>
+            <div class="pt-5">
+            </div>
+        </div>
     </form>
 </main>
 <div class="pt-5"> 
@@ -177,6 +185,7 @@
         <h1 >@curse</h1>
         <h1 >@namegroup</h1>
     </div>
+    <h1 class="text-center p-5">Числитель</h1>
     <table class="table table-bordered border-dark rounded container">
         <thead>
             <tr>
@@ -207,99 +216,210 @@
                 <th class="text-bg-dark">1</th>
                 <td style="background-color: orange" class="text-light">8.00-9.30</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
-                    {
-                        @if (number.Lessons == "Выходной")
+                   
+                        @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                            {
+                                @if (numbers.Lessons == "Выходной")
+                                {
+                                    <option>Выходной</option>
+                                }
+                                else
+                                {
+                                    <option>@numbers.Lessons</option>
+                                    <option>@numbers.NameRoom</option>
+                                    <option>@numbers.NameTeacher</option>
+                                }
+                            }
                         }
-                        else{
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                        else
+                        {
+                            @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                            {
+                                @if (numbers.Lessons == "Выходной")
+                                {
+                                    <option>Выходной</option>
+                                }
+                                else
+                                {
+                                    <option>@numbers.Lessons</option>
+                                    <option>@numbers.NameRoom</option>
+                                    <option>@numbers.NameTeacher</option>
+                                }
+                            }
                         }
-                        
-                        
-                    }
+                      
+                    
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -308,100 +428,210 @@
                 <th class="text-bg-dark" scope="row">2</th>
                 <td style="background-color: orange" class="text-light">9.40-11.10</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -410,100 +640,210 @@
                 <th class="text-bg-dark" scope="row">3</th>
                 <td style="background-color: orange" class="text-light">11.30-13.00</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -512,100 +852,210 @@
                 <th class="text-bg-dark">4</th>
                 <td style="background-color: orange" class="text-light">13.10-14.40</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -614,100 +1064,210 @@
                 <th class="text-bg-dark" scope="row">5</th>
                 <td style="background-color: orange" class="text-light">14.50-16.20</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -716,100 +1276,210 @@
                 <th class="text-bg-dark" scope="row">6</th>
                 <td style="background-color: orange" class="text-light">16.30-18.00</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>Выходной</th>
@@ -818,100 +1488,1723 @@
                 <th class="text-bg-dark" scope="row">7</th>
                 <td style="background-color: orange" class="text-light">18.10-19.40</td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group))
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
-                        {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
-                        }
-
-
                     }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
                 </td>
                 <td>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </td>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-
                     }
                 </th>
                 <th>
-                    @foreach (var number in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group))
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                     {
-                        @if (number.Lessons == "Выходной")
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
                         {
-                            <option>Выходной</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
                         {
-                            <option>@number.Lessons</option>
-                            <option>@number.NameRoom</option>
-                            <option>@number.NameTeacher</option>
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
                         }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+        </tbody>
+    </table>
+    <h1 class="text-center p-5">Знаменатель</h1>
+    <table class="table table-bordered border-dark rounded p-5 container">
+        <thead>
+            <tr>
+                <th style="background-color: orange" class="text-light" colspan="1"></th>
+                <th style="background-color: orange" class="text-light">Дата</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Monday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Tuesday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Wednesday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Thursday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Friday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Saturday</th>
+                <th style="background-color: black" class="text-light" colspan="1">@Sunday</th>
+            </tr>
+            <tr class="bg-warning">
+                <th style="background-color: black" class="text-light">№</th>
+                <th style="background-color: black" class="text-light">Время</th>
+                <th style="background-color: orange" class="text-light">Понедельник</th>
+                <th style="background-color: orange" class="text-light">Вторник</th>
+                <th style="background-color: orange" class="text-light">Среда</th>
+                <th style="background-color: orange" class="text-light">Четверг</th>
+                <th style="background-color: orange" class="text-light">Пятница</th>
+                <th style="background-color: orange" class="text-light">Суббота</th>
+                <th style="background-color: orange" class="text-light">Воскресенье</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="text-bg-dark">1</th>
+                <td style="background-color: orange" class="text-light">8.00-9.30</td>
+                <td>
 
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 1 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark" scope="row">2</th>
+                <td style="background-color: orange" class="text-light">9.40-11.10</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 2 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark" scope="row">3</th>
+                <td style="background-color: orange" class="text-light">11.30-13.00</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 3 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark">4</th>
+                <td style="background-color: orange" class="text-light">13.10-14.40</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 4 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark" scope="row">5</th>
+                <td style="background-color: orange" class="text-light">14.50-16.20</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 5 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark" scope="row">6</th>
+                <td style="background-color: orange" class="text-light">16.30-18.00</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 6 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>Выходной</th>
+            </tr>
+            <tr>
+                <th class="text-bg-dark" scope="row">7</th>
+                <td style="background-color: orange" class="text-light">18.10-19.40</td>
+                <td>
+
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Понедельник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Вторник" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </td>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Среда" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Четверг" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Пятница" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                </th>
+                <th>
+                    @if (Model.PSchedulesModelsList.Any(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Знаменатель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var numbers in Model.PSchedulesModelsList.Where(Options => Options.NumberLessons == 7 && Options.Dayofweek == "Суббота" && Options.Curse == valuecurse && Options.NameGroup == group && Options.KindOfSchedules == "Числитель"))
+                        {
+                            @if (numbers.Lessons == "Выходной")
+                            {
+                                <option>Выходной</option>
+                            }
+                            else
+                            {
+                                <option>@numbers.Lessons</option>
+                                <option>@numbers.NameRoom</option>
+                                <option>@numbers.NameTeacher</option>
+                            }
+                        }
                     }
                 </th>
                 <th>Выходной</th>
