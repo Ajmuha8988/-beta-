@@ -1,4 +1,4 @@
-﻿@model CRM_VUS.Models.ClassLessons
+﻿@model CRM_VUS.ViewModels.PScheduleVM
 
 @{
     ViewData["Title"] = "Добавить учебный предмет";
@@ -14,9 +14,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input asp-for="Lessons" class="form-control" aria-required="true" placeholder="ПМ05" />
-                        <label asp-for="Lessons">Предмет</label>
-                        <span asp-validation-for="Lessons" class="text-light"></span>
+                        <input asp-for="СL.Lessons" class="form-control" aria-required="true" placeholder="ПМ05" />
+                        <label asp-for="СL.Lessons">Предмет</label>
+                        <span asp-validation-for="СL.Lessons" class="text-light"></span>
                     </div>
                     <label class="text-light">@ViewBag.Message</label>
                 </div>

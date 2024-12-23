@@ -1,0 +1,8 @@
+select {
+    background-image: url(https://i.imgur.com/Tp9MHJk.png) !important;
+    background-position: calc(100% - 40px) 14px, calc(100% - 20px) 14px, 100% 0;
+    background-size: 0px 0px, 10px 10px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

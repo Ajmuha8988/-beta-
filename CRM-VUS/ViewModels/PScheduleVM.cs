@@ -12,9 +12,12 @@ namespace CRM_VUS.ViewModels
         public IEnumerable<ClassLessons> ClassLessonsModels { get; set; }
         public IEnumerable<IdentityUser> UserModels { get; set; }
         public IEnumerable<PSchedule> PSchedulesModelsList { get; set; }
-        public PSchedule PSchedulesModels { get; set; }
-        public IEnumerable<TSchedule> TSchedulesModelsList { get; set; }
-        public TSchedule TSchedulesModels { get; set; }
         public IEnumerable<DateTime> Dates { get; set; }
+        public IEnumerable<TSchedule> TSchedulesModelsList { get; set; }
+        public StudentGroup SG { get; set; }
+        public ClassRoom СR { get; set; }
+        public ClassLessons СL { get; set; }
+        public PSchedule PSchedulesModels { get; set; }
+        public TSchedule TSchedulesModels { get; set; }
     }
 }

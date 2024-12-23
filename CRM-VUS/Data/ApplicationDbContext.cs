@@ -14,6 +14,7 @@ namespace CRM_VUS.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
     }
